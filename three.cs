@@ -14,6 +14,8 @@ namespace four
 // Выбрасывать исключение
 // ArgumentException("Знаменатель не может быть равен 0");
 // *** Добавить упрощение дробей.
+    
+// Упрощение дробей добавлено в ToString
 
 {
     public class Rational
@@ -104,8 +106,22 @@ namespace four
             return x1;
         }
 
+        public int GCD(int num, int den)
+        {
+            while (den != 0)
+            {
+                var t = den;
+                den = num % den;
+                num = t;
+            }
+            return num;
+        }
+
         public string ToString()
         {
+            int gcd = GCD(num, den);
+            num /= gcd;
+            den /= gcd;
             return "(" + num + "/" + den + ")";
         }
 
