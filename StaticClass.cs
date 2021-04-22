@@ -1,4 +1,5 @@
-﻿using System;
+// Класс для второй задачи
+using System;
 namespace two
 {
     public class StaticClass
