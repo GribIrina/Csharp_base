@@ -40,7 +40,7 @@ namespace two
         {
             int count = 0;
 
-            for (int i = 0; i < 20; i += 2)
+            for (int i = 0; i < mass.Length; i += 2)
             {
                 if ((mass[i] % 3 == 0 && mass[i++] % 3 != 0)
                     || (mass[i++] % 3 == 0 && mass[i] % 3 != 0))
