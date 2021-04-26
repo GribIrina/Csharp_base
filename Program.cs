@@ -1,69 +1,30 @@
-﻿// Боровикова Ирина, ДЗ5, задача 1
+﻿// Боровикова Ирина, ДЗ5, задача 2
 
-// Создать программу, которая будет проверять корректность ввода логина.
-// Корректным логином будет строка от 2 до 10 символов,
-// содержащая только буквы латинского алфавита или цифры,
-// при этом цифра не может быть первой:
-// а) без использования регулярных выражений;
-// б) **с использованием регулярных выражений.
+// Разработать статический класс Message, содержащий следующие
+// статические методы для обработки текста:
+// а) Вывести только те слова сообщения, которые содержат не более n букв.
+// б) Удалить из сообщения все слова, которые заканчиваются на заданный символ.
+// в) Найти самое длинное слово сообщения.
+// г) Сформировать строку с помощью StringBuilder из самых длинных слов сообщения.
+// д) ***Создать метод, который производит частотный анализ текста.
+// В качестве параметра в него передается массив слов и текст, в качестве
+// результата метод возвращает сколько раз каждое из слов массива входит
+// в этот текст. Здесь требуется использовать класс Dictionary.
 
 using System;
-using System.Text.RegularExpressions;
 
-namespace one
+namespace two
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Решение без регулярок
-
-            Console.WriteLine("Введите логин: ");
-            string inquiry = Console.ReadLine();
-
-            bool correct = true;
-
-            if (inquiry.Length < 2 || inquiry.Length > 20)
-            {
-                correct = false;
-            }
-            else if (Char.IsDigit(inquiry[0]))
-            {
-                correct = false;
-            }
-            else
-            {
-                for (int i = 0; i < inquiry.Length; i++)
-                {
-                    if (!Char.IsLetterOrDigit(inquiry[i]))
-                    {
-                        correct = false;
-                        break;
-                    }
-                }
-            }
-
-            if (correct == true)
-            {
-                Console.WriteLine("Логин корректен");
-            }
-            else
-            {
-                Console.WriteLine("Логин некорректен");
-            }
-
-            // Решение с регулярками
-
-            Regex nicelog = new Regex("^[A-Za-z]{1}[A-Za-z0-9]{1,19}$");
-
-            if (nicelog.Match(inquiry).Success)
-            {
-                Console.WriteLine("Логин корректен");
-            }
-            else
-            {
-                Console.WriteLine("Логин некорректен");
-            }
+            Message mymessage = new Message("aabababa aba babab abababab");
+            Console.WriteLine($"Используемая строка: ");
+            mymessage.Print();
+            mymessage.NoMoreThenN(5);
+            Console.WriteLine(mymessage.FromLongest());
+            mymessage.BadSymbol('a');
         }
     }
 }
